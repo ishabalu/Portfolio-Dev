@@ -4,6 +4,126 @@ import Button from "../../components/button/Button";
 import Loading from "../loading/Loading";
 import { socialMediaLinks } from "../../portfolio";
 
+// Include your JSON data directly in your file
+const jsonData = {
+  "data": {
+        "user": {
+            "name": "Isha Saikumar",
+            "bio": "",
+            "isHireable": true,
+            "avatarUrl": "https://avatars.githubusercontent.com/u/57403205?u=e630e651444ace834d328cb7c6aa77acca6f8135&v=4",
+            "location": null,
+            "pinnedItems": {
+                "totalCount": 6,
+                "edges": [
+                    {
+                        "node": {
+                            "name": "Distance-Calculator",
+                            "description": null,
+                            "forkCount": 0,
+                            "stargazers": {
+                                "totalCount": 0
+                            },
+                            "url": "https://github.com/ishabalu/Distance-Calculator",
+                            "id": "MDEwOlJlcG9zaXRvcnkyNDA4OTUxNDc=",
+                            "diskUsage": 8,
+                            "primaryLanguage": {
+                                "name": "Python",
+                                "color": "#3572A5"
+                            }
+                        }
+                    },
+                    {
+                        "node": {
+                            "name": "Elgamal-Image-Stegno",
+                            "description": null,
+                            "forkCount": 2,
+                            "stargazers": {
+                                "totalCount": 0
+                            },
+                            "url": "https://github.com/ishabalu/Elgamal-Image-Stegno",
+                            "id": "MDEwOlJlcG9zaXRvcnkzMDA1ODM5NTY=",
+                            "diskUsage": 277,
+                            "primaryLanguage": {
+                                "name": "Jupyter Notebook",
+                                "color": "#DA5B0B"
+                            }
+                        }
+                    },
+                    {
+                        "node": {
+                            "name": "Sell-That",
+                            "description": null,
+                            "forkCount": 2,
+                            "stargazers": {
+                                "totalCount": 0
+                            },
+                            "url": "https://github.com/nirmaljoji/Sell-That",
+                            "id": "MDEwOlJlcG9zaXRvcnkyODQxMDMzODQ=",
+                            "diskUsage": 20496,
+                            "primaryLanguage": {
+                                "name": "EJS",
+                                "color": "#a91e50"
+                            }
+                        }
+                    },
+                    {
+                        "node": {
+                            "name": "Booking_Management_System_Backend",
+                            "description": null,
+                            "forkCount": 1,
+                            "stargazers": {
+                                "totalCount": 0
+                            },
+                            "url": "https://github.com/Dracon1023/Booking_Management_System_Backend",
+                            "id": "R_kgDOLittnA",
+                            "diskUsage": 102,
+                            "primaryLanguage": {
+                                "name": "JavaScript",
+                                "color": "#f1e05a"
+                            }
+                        }
+                    },
+                    {
+                        "node": {
+                            "name": "Booking_Management_System_Frontend",
+                            "description": null,
+                            "forkCount": 1,
+                            "stargazers": {
+                                "totalCount": 0
+                            },
+                            "url": "https://github.com/Dracon1023/Booking_Management_System_Frontend",
+                            "id": "R_kgDOLvCs3Q",
+                            "diskUsage": 1223,
+                            "primaryLanguage": {
+                                "name": "JavaScript",
+                                "color": "#f1e05a"
+                            }
+                        }
+                    },
+                    {
+                        "node": {
+                            "name": "NLP-project",
+                            "description": "Sentiment analysis on reviews to determine whether given product name has required input feature.",
+                            "forkCount": 0,
+                            "stargazers": {
+                                "totalCount": 0
+                            },
+                            "url": "https://github.com/ishabalu/NLP-project",
+                            "id": "R_kgDOMMWwCg",
+                            "diskUsage": 2449,
+                            "primaryLanguage": {
+                                "name": "Jupyter Notebook",
+                                "color": "#DA5B0B"
+                            }
+                        }
+                    }
+                ]
+            }
+        }
+    }
+};
+
 export default function Projects() {
   const GithubRepoCard = lazy(() =>
     import("../../components/githubRepoCard/GithubRepoCard")
@@ -13,24 +133,8 @@ export default function Projects() {
   const [repo, setrepo] = useState([]);
 
   useEffect(() => {
-    const getRepoData = () => {
-      fetch('/profile.json')
-        .then((result) => {
-          if (result.ok) {
-            return result.json();
-          }
-          throw new Error('Failed to fetch profile.json');
-        })
-        .then((response) => {
-          console.log('Fetched data:', response);
-          setrepoFunction(response.data.user.pinnedItems.edges);
-        })
-        .catch(function (error) {
-          console.error('Fetch error:', error);
-          setrepoFunction("Error");
-        });
-    };
-    getRepoData();
+    // Use the JSON data directly instead of fetching it
+    setrepoFunction(jsonData.data.user.pinnedItems.edges);
   }, []);
 
   function setrepoFunction(array) {
